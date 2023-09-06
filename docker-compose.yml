@@ -17,6 +17,7 @@ services:
       DOCKER_INFLUXDB_INIT_BUCKET: ${INFLUXDB_BUCKET}
 
   grafana:
+    user: "0"
     image: grafana/grafana:10.1.1
     container_name: 'sv-tracker-grafana'
     restart: 'no'
