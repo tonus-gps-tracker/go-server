@@ -42,11 +42,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            "HTTP_SERVER_PORT=${{ vars.HTTP_SERVER_PORT }}"
-            "INFLUXDB_HOST=${{ vars.INFLUXDB_HOST }}"
-            "INFLUXDB_PORT=${{ vars.INFLUXDB_PORT }}"
-            "INFLUXDB_TOKEN=${{ secrets.INFLUXDB_TOKEN }}"
-            "INFLUXDB_ORG=${{ vars.INFLUXDB_ORG }}"
-            "INFLUXDB_BUCKET=${{ vars.INFLUXDB_BUCKET }}"
-            "INFLUXDB_MEASUREMENT=${{ vars.INFLUXDB_MEASUREMENT }}"
