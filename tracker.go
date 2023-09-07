@@ -25,10 +25,14 @@ type Tracker struct {
 	delimiter string
 }
 
-func (tracker *Tracker) Handle(w http.ResponseWriter, r *http.Request) {
+func (tracker *Tracker) Health(w http.ResponseWriter, r *http.Request) {
+	io.WriteString(w, "OK")
+}
+
+func (tracker *Tracker) Save(w http.ResponseWriter, r *http.Request) {
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		log.Printf("[ERROR] Tracker_Handle, io.ReadAll: %s\n", err)
+		log.Printf("[ERROR] Tracker_Save, io.ReadAll: %s\n", err)
 	}
 
 	data := strings.Split(string(body), tracker.delimiter)
