@@ -43,10 +43,10 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            "HTTP_SERVER_PORT=${{ secrets.HTTP_SERVER_PORT }}"
-            "INFLUXDB_HOST=${{ secrets.INFLUXDB_HOST }}"
-            "INFLUXDB_PORT=${{ secrets.INFLUXDB_PORT }}"
+            "HTTP_SERVER_PORT=${{ env.HTTP_SERVER_PORT }}"
+            "INFLUXDB_HOST=${{ env.INFLUXDB_HOST }}"
+            "INFLUXDB_PORT=${{ env.INFLUXDB_PORT }}"
             "INFLUXDB_TOKEN=${{ secrets.INFLUXDB_TOKEN }}"
-            "INFLUXDB_ORG=${{ secrets.INFLUXDB_ORG }}"
-            "INFLUXDB_BUCKET=${{ secrets.INFLUXDB_BUCKET }}"
-            "INFLUXDB_MEASUREMENT=${{ secrets.INFLUXDB_MEASUREMENT }}"
+            "INFLUXDB_ORG=${{ env.INFLUXDB_ORG }}"
+            "INFLUXDB_BUCKET=${{ env.INFLUXDB_BUCKET }}"
+            "INFLUXDB_MEASUREMENT=${{ env.INFLUXDB_MEASUREMENT }}"
