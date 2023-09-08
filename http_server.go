@@ -25,7 +25,7 @@ func (server *HttpServer) Run() {
 	server.setup()
 
 	mux := mux.NewRouter()
-	mux.HandleFunc("/save", server.Tracker.Save).Methods(http.MethodPost)
+	mux.HandleFunc("/save", server.Tracker.Auth(server.Tracker.Save)).Methods(http.MethodPost)
 	mux.HandleFunc("/health", server.Tracker.Health).Methods(http.MethodGet)
 
 	err := http.ListenAndServe(

@@ -29,6 +29,17 @@ func (tracker *Tracker) Health(w http.ResponseWriter, r *http.Request) {
 	io.WriteString(w, "OK")
 }
 
+func (tracker *Tracker) Auth(next http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.Header.Get("x-api-secret") != utils.GetEnv("HTTP_SERVER_SECRET") {
+			w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+
+		next(w, r)
+	}
+}
+
 func (tracker *Tracker) Save(w http.ResponseWriter, r *http.Request) {
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
