@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -23,6 +24,10 @@ type GPSData struct {
 
 type Tracker struct {
 	delimiter string
+}
+
+func (tracker *Tracker) Home(w http.ResponseWriter, r *http.Request) {
+	http.Redirect(w, r, fmt.Sprintf("%s:%s", utils.GetEnv("HTTP_SERVER_URL"), utils.GetEnv("GRAFANA_PORT")), http.StatusFound)
 }
 
 func (tracker *Tracker) Health(w http.ResponseWriter, r *http.Request) {
