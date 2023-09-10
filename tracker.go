@@ -51,6 +51,9 @@ func (tracker *Tracker) Save(w http.ResponseWriter, r *http.Request) {
 		log.Printf("[ERROR] Tracker_Save, io.ReadAll: %s\n", err)
 	}
 
+	log.Println(body)
+	log.Println(string(body))
+
 	data := strings.Split(string(body), tracker.delimiter)
 
 	if len(data) != reflect.TypeOf(GPSData{}).NumField() {
