@@ -5,7 +5,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/tonus-gps-tracker/server/internal/api/controller"
-	"github.com/tonus-gps-tracker/server/internal/api/middleware"
 	"github.com/tonus-gps-tracker/server/internal/api/route"
 	"github.com/tonus-gps-tracker/server/internal/common"
 )
@@ -15,8 +14,6 @@ type HttpServer struct {
 }
 
 func (httpServer *HttpServer) registerRoutes(app *gin.Engine) {
-	app.Use(middleware.AuthMiddleware())
-
 	rootGroup := app.Group("/")
 	apiGroup := rootGroup.Group("api")
 
