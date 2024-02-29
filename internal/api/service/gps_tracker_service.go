@@ -20,14 +20,14 @@ type GpsTrackerService struct {
 }
 
 func (service *GpsTrackerService) Save(body string) error {
-	log.Println(body)
-
 	lines := strings.Split(string(body), "\n")
 
 	for _, line := range lines {
-		log.Println(line)
+		if len(line) == 0 {
+			continue
+		}
+
 		lineData := strings.Split(line, delimiter)
-		log.Println(lineData)
 
 		if (len(lineData) - 1) != reflect.TypeOf(dto.GPSData{}).NumField() {
 			return errors.New("incompatible number of fields")
