@@ -17,7 +17,6 @@ func (httpServer *HttpServer) registerRoutes(app *gin.Engine) {
 	rootGroup := app.Group("/")
 	apiGroup := rootGroup.Group("api")
 
-	route.HomeRoutes(rootGroup)
 	route.HealthRoutes(rootGroup)
 	route.GpsTrackerRoutes(apiGroup, httpServer.gpsTrackerController)
 }
@@ -31,7 +30,7 @@ func (httpServer *HttpServer) Run() {
 	httpServer.registerRoutes(app)
 
 	log.Println("[INFO][API] Server started")
-	err := app.Run(":" + common.GetEnv("HTTP_SERVER_PORT"))
+	err := app.Run()
 
 	if err != nil {
 		log.Fatalf("[ERROR] HttpServer_Run, app.Run: %s\n", err)
